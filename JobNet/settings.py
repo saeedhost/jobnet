@@ -29,7 +29,7 @@ DEBUG = False
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'jobnet.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'jobnet.herokuapp.com']
 
 
 # Application definition
