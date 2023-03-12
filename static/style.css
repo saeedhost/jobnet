@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+*{
+    font-family: 'poppins' ,sans-serif;
+}
+body{
+    background-image: url("images/1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.heading{
+    color: #fff;
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+header{
+    color: #fff;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+    font-weight: 500;
+}
+.form-floating{
+    height: 45px;
+    width: 100%;
+    border-radius: 30px;
+    margin: 15px 0;
+}
+
+.form-floating .form-control{
+    height: 45px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    padding: 0 0 0 45px;
+    background: rgba(255,255,255,0.3);
+    margin-top: 2px;
+}
+::-webkit-input-placeholder{
+    color: #fff;
+}
+.submit{
+    border: none;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-size: 18px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    color: black;
+    background-color:orange;
+    cursor: pointer;
+    transition: .3s ;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgba(255, 0, 0, 0.2);
+    background-color: black;
+    color: white;
+    border: 1px solid orange;
+    margin-top: 5px;
+}
+.two-col{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #fff;
+    font-size: small;
+    margin-top: 10px;
+}
+.one{
+    display: flex;
+}
+.two a:hover{
+    color: orange;
+}
+label a{
+    text-decoration: none;
+    color: #fff;
+}
+

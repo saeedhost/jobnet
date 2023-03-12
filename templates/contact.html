@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/static/assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h1 class="text-white">Contact Me</h1>
+        
+        <ol>
+          <li><a href="{% url 'myHome' %}">Home</a></li>
+          <li>Contact Me</li>
+        </ol>
+
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <div class="info-item  d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-map"></i>
+              <h3>Address</h3>
+              <p>Tehsil Paroa, Dera Ismail Khan, KP 29230</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-envelope"></i>
+              <h3>Email Me</h3>
+              <p>saeedwtech@gmail.com</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-item  d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-telephone"></i>
+              <h3>Call Me</h3>
+              <p>+92 348 6548 016</p>
+            </div>
+          </div><!-- End Info Item -->
+
+        </div>
+
+        <div class="row gy-4 mt-1">
+
+          <div class="col-lg-6 ">
+            
+
+            <iframe src="https://www.google.com/maps/d/embed?mid=1UbOD2h4QhYL1hKwuEVIXBALV3rM&hl=en&ehbc=2E312F" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+          </div><!-- End Google Maps -->
+
+          <div class="col-lg-6">
+            {% if messages %}
+                  <div class="container">
+                    {% for message in messages %}
+                      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+                  </div>
+            {% endif %}
+            <form method="post" role="form">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="text" class="form-control mt-2" name="subject" id="subject" placeholder="Subject" required>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control mt-2" name="user_email" id="email" placeholder="Your Email" required>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control mt-2" name="message" rows="5" placeholder="Message" required></textarea>
+              </div>
+                <input type="submit" class="btn btn-warning mt-2 text-white" value="Send Message">
+              </div>
+            </form>
+
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  {% endblock %}

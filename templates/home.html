@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+
+    <div class="info d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+            <!--<h2 data-aos="fade-down">Welcome to <span>JobNet</span></h2>-->
+            <p data-aos="fade-up">Our website connects job seekers in Pakistan with the latest job vacancies in various industries. Employers can also post job openings to attract qualified candidates. Our mission is to simplify the job search process and help individuals find rewarding careers.</p>
+            <a data-aos="fade-up" data-aos-delay="200" href="{% url 'uploadjob' %}" class="btn-get-started">Post Job</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <div class="carousel-item active" style="background-image: url(/static/assets/img/hero-carousel/hero-carousel-1.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(/static/assets/img/hero-carousel/hero-carousel-2.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(/static/assets/img/hero-carousel/hero-carousel-3.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(/static/assets/img/hero-carousel/hero-carousel-4.jpg)"></div>
+      <div class="carousel-item" style="background-image: url(/static/assets/img/hero-carousel/hero-carousel-5.jpg)"></div>
+
+      {% comment %} <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a> {% endcomment %}
+    </div>
+
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= Recent Blog Posts Section ======= -->
+    <section id="recent-blog-posts" class="recent-blog-posts">
+      <div class="container" data-aos="fade-up">
+        <div class=" section-header">
+          <h1>Latest Jobs</h1>
+          <p>Below are the latest jobs in Pakistan</p>
+        </div>
+
+      <div class="row gy-5 p-1">
+
+        <form method="POST">
+          {% csrf_token %}
+          <div class="input-group input-group-md"> <!-- input-group-lg , md ,sm-->
+            <input type="text" class="form-control border border-1 border-warning" name="job_search" placeholder="Enter city name">
+            <input type="submit" class="input-group-text btn btn-warning text-white px-2 py-1" name="submit" value="Search">
+          </div>
+        </form>
+
+        {% for job in jobs %}
+        <div class="col-xl-4 col-md-4 border rounded" style="" data-aos="fade-up" data-aos-delay="100">
+          <div class="post-item position-relative" style="min-height:100%; width:100%;">
+
+            <div class="post-img position-relative overflow-hidden">
+              <img src="{{ job.job_image.url }}" style="height:200px; object-fit:cover; width:100%" alt="">
+              <span class="post-date">{{ job.job_location }}</span>
+            </div>
+
+            <div class="post-content d-flex flex-column">
+
+              <h3 class="post-title">{{ job.job_title }}</h3>
+
+              <div class="meta d-flex align-items-center">
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">{{ job.name }}</span>
+                </div>
+                <span class="px-3 text-black-50"></span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-calendar"></i> <span class="ps-2">{{ job.date }}</span>
+                </div>
+              </div>
+              <hr>
+              <a href="/job-details/{{job.slud_ref}}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+        </div><!-- End post item -->
+
+        {% empty %}
+				<div class="container mt-2">
+					<div class="alert alert-danger"><strong>No Job found! </strong> Try another</div>
+				</div>
+
+        {% endfor %}
+
+      </div>
+
+      </div>
+    </section>
+    <!-- End Recent Blog Posts Section -->
+
+  </main><!-- End #main -->
+
+  {% endblock %}

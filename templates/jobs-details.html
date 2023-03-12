@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/static/assets/img/breadcrumbs-bg.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+        <h2>Post </h2>
+        <h1 class="text-white">Job Details</h1>
+
+        <ol>
+          <li><a href="{% url 'myHome' %}">Home</a></li>
+          <li>Job Details</li>
+        </ol>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Details Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row">
+          <div class="col">
+            <article class="blog-details">
+              <div class="post-img">
+                <img src="{{ current_job.job_image.url }}" alt="" class="img-fluid">
+              </div>
+              <h2 class="title">{{ current_job.job_title }}</h2>
+              <div class="meta-top">
+                <div class="row">
+                  <div class="col-sm p-1 cols-lg-1 cols-xl-1">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="#">{{ current_job.name }}</a></li>
+                    </ul>
+                  </div>
+ 
+                  <div class="col-sm p-1 cols-lg-2 cols-xl-1">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ current_job.date }}</time></a></li>
+                    </ul>
+                  </div>
+
+                  <div class="col-sm p-1 cols-lg-1 cols-xl-1">
+                    <ul>
+                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#" id="result"></a></li>
+                    </ul>
+                  </div>
+                  <div class="col-sm cols-lg-1 cols-xl-1">
+                  </div>
+                  <div class="col-sm cols-lg-1 cols-xl-1">
+                  </div>
+                </div>
+              </div><!-- End meta top -->
+
+              <div class="content">
+                <p>
+                  {{ current_job.job_des | linebreaksbr }}
+                </p>
+              </div><!-- End post content -->
+            </article><!-- End blog post -->
+          </div>
+        </div>
+      </div>
+    </section><!-- End Blog Details Section -->
+
+
+      <div class="container bordered p-3" style="margin-top: -50px;">
+      <h2>Comments</h2>
+        {% if not current_job.comments.all %}
+        <div class="row">
+          <div class="col">
+            <p>No Comment Added Yet. </p>
+          </div>
+        </div>
+        {% else %}
+
+        <br>
+
+          {% for comment in current_job.comments.all %}
+          <div class="row" id="comments">
+            <br>
+            <div class="cols-lg-2" style="vertical-align:top;">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <strong>{{ comment.commenter.username }}</strong>
+            </div>
+            <div class="cols-lg-7">
+              <p>{{ comment.text | linebreaksbr }}</p>
+            </div>
+            <div class="cols-lg-3" style="vertical-align:top;">{{ comment.commented_at }}</div>
+          </div>
+          <hr>
+          {% endfor %}
+
+        {% endif %}
+
+        <a href="{% url 'add_comment_to_job' current_job.id %}" class="btn btn-warning text-white">Add Comment</a>
+
+        <script>
+          const boxes = document.querySelectorAll('#comments');
+          const count = boxes.length;
+          document.getElementById('result').textContent = `${count} Comments`;
+      </script>
+  </main><!-- End #main -->
+  
+
+  {% endblock %}
+

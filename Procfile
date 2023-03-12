@@ -1,0 +1,1 @@
+web: gunicorn JobNet.wsgi --log-file -
